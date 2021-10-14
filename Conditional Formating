@@ -1,0 +1,42 @@
+BG Color Sales = 
+    VAR _topSKU = 
+        TOPN( 
+            1, 
+            FILTER (
+                ALLSELECTED ( 'New Product Intro Brasscraft'[SKU & Item Desc] ), 
+                'New Product Intro Brasscraft'[SKU & Item Desc] <> "NA"
+                ),
+                CALCULATE ( [Total Sales]), DESC
+            ) 
+            VAR _bottomSKU = 
+        TOPN( 
+                1, 
+                FILTER (
+                    ALLSELECTED('New Product Intro Brasscraft'[SKU & Item Desc] ), 
+                    'New Product Intro Brasscraft'[SKU & Item Desc] <> "NA"
+                ), 
+                CALCULATE ( [Total Sales]), ASC
+            ) 
+        VAR _SKU = SELECTEDVALUE('New Product Intro Brasscraft'[SKU & Item Desc]) 
+        VAR _result = SWITCH(_SKU, _topSKU, "Green", _bottomSKU, "Red", "White") 
+        RETURN
+        _result
+        
+        
+ MinMax Sales Color = 
+        VAR _cySales = 
+        CALCULATETABLE(
+            ADDCOLUMNS(
+                VALUES('New Product Intro Brasscraft'[Week #] ),
+                "@SalesAmount", [Total Sales]
+            ),ALLSELECTED('New Product Intro Brasscraft'[Week #])
+        )
+    VAR _maxSales = 
+        MAXX ( _cySales, [@SalesAmount] )
+    VAR _minsales = 
+        MINX (_cySales, [@SalesAmount] )
+    VAR _currentSales = [Total Sales]
+    VAR _result = IF(_maxSales = _currentSales, "#17C42B", IF(_minsales = _currentSales, "Red", "#215690"))
+    // Var _result =
+     return
+     _result
