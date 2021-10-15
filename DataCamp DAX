@@ -1,3 +1,5 @@
+Dim_Calendar = CALENDAR(Min('Exported Data'[Created Date]), Max('Exported Data'[Created Date]))
+
 Sales YoY % New = 
 VAR SalesPriorYear = CALCULATE([Sales], SAMEPERIODLASTYEAR(Dim_DeliveryDate[Delivery Date Key]))
 RETURN
