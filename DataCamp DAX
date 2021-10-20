@@ -11,3 +11,8 @@ Retail Price YoY% ALL = CALCULATE([Retail Price YoY%], ALL(DIM_InvoiceDate[Calen
 Total Sales Chiller = CALCULATE([Total Sales], Filter(FAct_sales, Related(Dim_StockItem[Is Chiller Stock]) = True()))
 
 % Total Sales Chiller = DIVIDE([Total Sales Chiller], [Total Sales])
+
+Count of Chiller Items = CALCULATE(COUNTROWS(Dim_StockItem), FILTER(Fact_Sales, Related(Dim_StockItem[Is Chiller Stock]) = True())))
+
+--Count with Crossfilter to change relationship to many to many
+Count of Chiller Items by Stock Item Key = CALCULATE([Total Sales], Filter(Fact_Sales, Related(Dim_StockItem[Is Chiller Stock]) = TRUE())), CROSSFILTER(Dim_StockItem[Stock Item Key], Fact_Sales[Stock Item Key], Both))
