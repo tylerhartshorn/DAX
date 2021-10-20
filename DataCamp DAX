@@ -16,3 +16,11 @@ Count of Chiller Items = CALCULATE(COUNTROWS(Dim_StockItem), FILTER(Fact_Sales, 
 
 --Count with Crossfilter to change relationship to many to many
 Count of Chiller Items by Stock Item Key = CALCULATE([Total Sales], Filter(Fact_Sales, Related(Dim_StockItem[Is Chiller Stock]) = TRUE())), CROSSFILTER(Dim_StockItem[Stock Item Key], Fact_Sales[Stock Item Key], Both))
+
+--Iterate Function
+
+Profit Ratio = AVERAGEX(Fact_Sales, Fact_Sales[Profit] / [Total Sales])
+
+Average Discount Rate = AVERAGEX(Fact_Sales, (Fact_Sales[Retail Price] - Fact_Sales[Unit Price]) / Fact_Sales[Retail Price])
+
+Discount Rate Ranking = RANKX( ALL(Dim_Employee[Employee]), [Average Discount Rate])
