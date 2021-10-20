@@ -7,3 +7,7 @@ DIVIDE (([Sales] - SalesPriorYear), SalesPriorYear)
 
 --YoY calc not affected by slicer
 Retail Price YoY% ALL = CALCULATE([Retail Price YoY%], ALL(DIM_InvoiceDate[Calendar Year]))
+
+Total Sales Chiller = CALCULATE([Total Sales], Filter(FAct_sales, Related(Dim_StockItem[Is Chiller Stock]) = True()))
+
+% Total Sales Chiller = DIVIDE([Total Sales Chiller], [Total Sales])
