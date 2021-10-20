@@ -5,3 +5,5 @@ VAR SalesPriorYear = CALCULATE([Sales], SAMEPERIODLASTYEAR(Dim_DeliveryDate[Deli
 RETURN
 DIVIDE (([Sales] - SalesPriorYear), SalesPriorYear)
 
+--YoY calc not affected by slicer
+Retail Price YoY% ALL = CALCULATE([Retail Price YoY%], ALL(DIM_InvoiceDate[Calendar Year]))
