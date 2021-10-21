@@ -24,3 +24,15 @@ Profit Ratio = AVERAGEX(Fact_Sales, Fact_Sales[Profit] / [Total Sales])
 Average Discount Rate = AVERAGEX(Fact_Sales, (Fact_Sales[Retail Price] - Fact_Sales[Unit Price]) / Fact_Sales[Retail Price])
 
 Discount Rate Ranking = RANKX( ALL(Dim_Employee[Employee]), [Average Discount Rate])
+
+--Remove Rank number from Total
+Discount Rate Ranking = IF(HASONEVALUE(Dim_Employee[Employee]) = TRUE, 
+  RANKX(
+    ALL(Dim_Employee[Employee]),
+    [Average Discount Rate]), BLANK()
+)
+
+--Switch with conditions
+Employee Performance Analysis = SWITCH(TRUE,
+AND([Average Discount Rate] < 0.3296, [Profit Ratio] > 0.5380), "High",
+AND([Average Discount Rate] < 0.3300, [Profit Ratio > 0.5370), "Med", "Low")
