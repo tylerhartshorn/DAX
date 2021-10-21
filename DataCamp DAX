@@ -36,3 +36,12 @@ Discount Rate Ranking = IF(HASONEVALUE(Dim_Employee[Employee]) = TRUE,
 Employee Performance Analysis = SWITCH(TRUE,
 AND([Average Discount Rate] < 0.3296, [Profit Ratio] > 0.5380), "High",
 AND([Average Discount Rate] < 0.3300, [Profit Ratio > 0.5370), "Med", "Low")
+
+--Calculated Column
+High Price/Volume Chiller Item = 
+RELATED(Dim_StockItem[Is Chiller Stock]) && ([Total Chiller Items] > 100 || [Retail Price] > 15)
+
+--Calculate Total Sales of High Price/Volume Items
+Total Sales High Volume/Price Chiller = CALCULATE([Total Sales], 'Fact_Sales'[High Price/Volume Chiller Item] = True)
+
+
