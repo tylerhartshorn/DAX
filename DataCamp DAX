@@ -44,4 +44,6 @@ RELATED(Dim_StockItem[Is Chiller Stock]) && ([Total Chiller Items] > 100 || [Ret
 --Calculate Total Sales of High Price/Volume Items
 Total Sales High Volume/Price Chiller = CALCULATE([Total Sales], 'Fact_Sales'[High Price/Volume Chiller Item] = True)
 
+--Create Column for Emails
+Email - LOWER(SUBSTITUE([Employee], " ", ".") & "@wwl.com")
 
