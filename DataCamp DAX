@@ -49,3 +49,14 @@ Email - LOWER(SUBSTITUE([Employee], " ", ".") & "@wwl.com")
 
 --Create new Table with information about California only
 CaliforniaPR = FILTER(SUMMARIZE(Fact_Sales, Dim_Empolyee[Employee], Dim_InvoiceDate[Calendar Year], Dim_City[State Province]), Dim_City[State Province] = "California")
+
+--ADD COlUMMS and Calculated Measure to table
+CaliforniaPR = ADDCOLUMNS(
+  FILTER(SUMMARIZE(Fact_Sales,
+          Dim_Employee[Employee],
+          Dim_InvoiceDate[Calendar Year],
+          Dim_City[State Province]),
+     Dim_City[State Province] = "California"),
+     "Profit Ratio",
+     [Profit Ratio]
+)
