@@ -60,3 +60,6 @@ CaliforniaPR = ADDCOLUMNS(
      "Profit Ratio",
      [Profit Ratio]
 )
+
+--YTD Function
+Total Sales YTD = TOTALYTD([Total Sales], Dim_InvoiceDate[Date])
