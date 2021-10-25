@@ -47,3 +47,5 @@ Total Sales High Volume/Price Chiller = CALCULATE([Total Sales], 'Fact_Sales'[Hi
 --Create Column for Emails
 Email - LOWER(SUBSTITUE([Employee], " ", ".") & "@wwl.com")
 
+--Create new Table with information about California only
+CaliforniaPR = FILTER(SUMMARIZE(Fact_Sales, Dim_Empolyee[Employee], Dim_InvoiceDate[Calendar Year], Dim_City[State Province]), Dim_City[State Province] = "California")
