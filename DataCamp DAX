@@ -63,3 +63,7 @@ CaliforniaPR = ADDCOLUMNS(
 
 --YTD Function
 Total Sales YTD = TOTALYTD([Total Sales], Dim_InvoiceDate[Date])
+
+--SAMEPERIODLASTYEAR
+Total Sales YTD Last Year = TOTALYTD([Total Sales], SAMEPERIODLASTYEAR(Dim_InvoiceDate[Date])
+
