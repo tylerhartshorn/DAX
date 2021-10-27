@@ -67,3 +67,14 @@ Total Sales YTD = TOTALYTD([Total Sales], Dim_InvoiceDate[Date])
 --SAMEPERIODLASTYEAR
 Total Sales YTD Last Year = TOTALYTD([Total Sales], SAMEPERIODLASTYEAR(Dim_InvoiceDate[Date])
 
+--YoY with VAR
+Total Sales YoY% = 
+  VAR Sales_LastYear = CALCULATE([Total Sales],
+                SAMEPERIODLASTYEAR(Dim_InvoiceDate[Date]))
+ RETURN
+ 
+ DIVIDE([Total Sales - Sales_LastYear, Sales_LastYear)
+ 
+ 
+  
+  
