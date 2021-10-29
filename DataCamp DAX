@@ -75,6 +75,23 @@ Total Sales YoY% =
  
  DIVIDE([Total Sales - Sales_LastYear, Sales_LastYear)
  
- 
+ --Generate Date Table
+ Dates = 
+VAR BaseCalendar =
+    CALENDARAUTO()
+RETURN
+    GENERATE(
+        BaseCalendar,
+        VAR BaseDate = [Date]
+        VAR YearDate = YEAR ( BaseDate )
+        VAR MonthNumber = MONTH ( BaseDate )
+        RETURN ROW (
+            "Day", BaseDate,
+            "Year", YearDate,
+            "Month Number", MonthNumber,
+            "Month", FORMAT ( BaseDate, "mmmm" ),
+            "Year Month", FORMAT ( BaseDate, "mmm yy" )
+        )
+    )
   
   
