@@ -95,3 +95,8 @@ RETURN
     )
   
   
+--UseRelationship 
+Related Number of Employees = CALCULATE(SUM('Summary Statistics Double NAICS'[Number of employees]), USERELATIONSHIP('NAICS Code'[2017 NAICS code], 'Summary Statistics Double NAICS' [NAICS Code Related]))
+
+
+
